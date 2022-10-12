@@ -35,6 +35,12 @@ class UndocmentedStatusInAPIResponse(KeyError):
              обнаруженный в ответе API!'
 
 
+class UndocmentedNameInAPIResponse(KeyError):
+    def __str__(self):
+        return 'Недокументированное имя домашней работы,\
+             обнаруженный в ответе API!'
+
+
 class FalilureSendingMessage(Exception):
     def __str__(self):
         return 'Cбой при отправке сообщения!'
