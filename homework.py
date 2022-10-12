@@ -85,8 +85,7 @@ def check_response(response):
 
 
 def parse_status(homework):
-    """Извлекает из информации о конкретной домашней работе статус этой работы.
-    """
+    """Извлекает статус домашней работы из ответа API-сервиса."""
     if homework['status'] not in settings.HOMEWORK_STATUSES:
         logger.error("Недокументированный статус домашней работы,\
             обнаруженный в ответе API!")
@@ -102,8 +101,7 @@ def parse_status(homework):
 
 
 def check_tokens():
-    """Проверяет доступность переменных окружения для работы программы.
-    """
+    """Проверяет доступность переменных окружения для работы программы."""
     # venv = dotenv_values(".env")
     # if all(venv):
     #     return True
