@@ -1,5 +1,4 @@
-OLD_STATUSES1 = {}
-OLD_STATUSES2 = {}
+OLD_STATUSES = {}
 HOMEWORK_STATUSES = {
     'approved': 'Работа проверена: ревьюеру всё понравилось. Ура!',
     'reviewing': 'Работа взята на проверку ревьюером.',

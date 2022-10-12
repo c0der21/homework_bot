@@ -48,6 +48,8 @@ def send_message(bot, message):
 
 
 def get_api_answer(current_timestamp):
+    """Делает запрос к единственному эндпоинту API-сервиса"""
+
     timestamp = current_timestamp  # or int(time.time())
     try:
         response = requests.get(
@@ -67,6 +69,8 @@ def get_api_answer(current_timestamp):
 
 
 def check_response(response):
+    """"Проверяет ответ API на корректность"""
+
     logger.info("Проверка ответа API на корректность")
     homeworks = response['homeworks']
     if not isinstance(response, dict):
@@ -82,6 +86,9 @@ def check_response(response):
 
 
 def parse_status(homework):
+    """Извлекает из информации о конкретной домашней
+    работе статус этой работы"""
+
     if homework['status'] not in settings.HOMEWORK_STATUSES:
         logger.error("Недокументированный статус домашней работы,\
             обнаруженный в ответе API!")
@@ -89,14 +96,16 @@ def parse_status(homework):
     homework_name = homework.get("homework_name")
     homework_status = homework.get("status")
     verdict = settings.HOMEWORK_STATUSES[homework_status]
-    if verdict != settings.OLD_STATUSES1.get(
+    if verdict != settings.OLD_STATUSES.get(
             homework_name) is None:
-        settings.OLD_STATUSES1[homework_name] = verdict
+        settings.OLD_STATUSES[homework_name] = verdict
         return f'Изменился статус проверки работы "{homework_name}". {verdict}'
     return f'Изменился статус проверки работы "{homework_name}". {verdict}'
 
 
 def check_tokens():
+    """Проверяет доступность переменных окружения,
+    которые необходимы для работы программы"""
     # venv = dotenv_values(".env")
     # if all(venv):
     #     return True
